@@ -1,0 +1,420 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Field Robot Event 2024 - API",
+      "version": "1"
+    },
+    "servers": [
+      {
+        "url": "/fre2024"
+      }
+    ],
+    "paths": {
+      "/task2/add-row": {
+        "post": {
+          "tags": [
+            "Task2"
+          ],
+          "summary": "Add Row",
+          "description": "Add the plant count for a given row.",
+          "operationId": "add_row_task2_add_row_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantRowData"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task2/start": {
+        "post": {
+          "tags": [
+            "Task2"
+          ],
+          "summary": "Start Task",
+          "description": "The robot signalizes that it has started working on task 2.",
+          "operationId": "start_task_task2_start_post",
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task2/stop": {
+        "post": {
+          "tags": [
+            "Task2"
+          ],
+          "summary": "Stop Task",
+          "description": "The robot signalizes that it has finished working on task 2.",
+          "operationId": "stop_task_task2_stop_post",
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task3/add-position": {
+        "post": {
+          "tags": [
+            "Task3"
+          ],
+          "summary": "Add Position",
+          "description": "Add the position for detected weed.",
+          "operationId": "add_position_task3_add_position_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PositionData"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task3/start": {
+        "post": {
+          "tags": [
+            "Task3"
+          ],
+          "summary": "Start Task",
+          "description": "The robot signalizes that it has started working on task 3.",
+          "operationId": "start_task_task3_start_post",
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task3/stop": {
+        "post": {
+          "tags": [
+            "Task3"
+          ],
+          "summary": "Stop Task",
+          "description": "The robot signalizes that it has finished working on task 3.",
+          "operationId": "stop_task_task3_stop_post",
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "APIKeyHeader": []
+            }
+          ]
+        }
+      },
+      "/task4/get-positions": {
+        "get": {
+          "tags": [
+            "Task4"
+          ],
+          "summary": "Get Positions",
+          "description": "Get the weed locations for task 4.",
+          "operationId": "get_positions_task4_get_positions_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/PositionData"
+                    },
+                    "type": "array",
+                    "title": "Response Get Positions Task4 Get Positions Get"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/health/ping": {
+        "get": {
+          "tags": [
+            "Health"
+          ],
+          "summary": "Ping",
+          "description": "Send a ping message to the server to test if API is reachable.",
+          "operationId": "ping_health_ping_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/InfoMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "InfoMessage": {
+          "properties": {
+            "msg": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/InfoMessageEnum"
+                }
+              ],
+              "description": "ok on success. fail on failure"
+            }
+          },
+          "type": "object",
+          "required": [
+            "msg"
+          ],
+          "title": "InfoMessage",
+          "description": "Schema for info message.",
+          "example": {
+            "msg": "ok"
+          }
+        },
+        "InfoMessageEnum": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "fail"
+          ],
+          "title": "InfoMessageEnum"
+        },
+        "PlantRowData": {
+          "properties": {
+            "row_number": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "title": "Row Number",
+              "description": "Number of the row starting at 1."
+            },
+            "plant_count": {
+              "type": "integer",
+              "minimum": 0,
+              "title": "Plant Count",
+              "description": "Number of counted plants for the given row."
+            }
+          },
+          "type": "object",
+          "required": [
+            "row_number",
+            "plant_count"
+          ],
+          "title": "PlantRowData",
+          "description": "Schema for plant row data.",
+          "example": {
+            "plant_count": 0,
+            "row_number": 1
+          }
+        },
+        "PositionData": {
+          "properties": {
+            "x": {
+              "type": "number",
+              "title": "X",
+              "description": "x coordinate. Unit is [metre]."
+            },
+            "y": {
+              "type": "number",
+              "title": "Y",
+              "description": "y coordinate. Unit is [metre]."
+            }
+          },
+          "type": "object",
+          "required": [
+            "x",
+            "y"
+          ],
+          "title": "PositionData",
+          "description": "Schema for position data. ",
+          "example": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      },
+      "securitySchemes": {
+        "APIKeyHeader": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "x-api-key"
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Task2",
+        "description": "Object Detection and Counting in a Maize Field"
+      },
+      {
+        "name": "Task3",
+        "description": "Mapping in a Grassland Area"
+      },
+      {
+        "name": "Task4",
+        "description": "Application in a Grassland Area"
+      },
+      {
+        "name": "Health",
+        "description": "Endpoint for health checks"
+      }
+    ]
+  }

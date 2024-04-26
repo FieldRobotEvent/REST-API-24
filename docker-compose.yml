@@ -1,0 +1,41 @@
+x-restart-policy: &default_restart_policy
+  restart: ${DEFAULT_RESTART_POLICY:-unless-stopped}
+
+services:
+  api:
+    build:
+      context: ./api
+    <<: *default_restart_policy
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: uvicorn --host 0.0.0.0 --reload api.main:app
+    hostname: "api"
+    env_file:
+      - api/api.env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./api/api/:/home/api/api/
+    networks:
+      - frenet
+
+  postgres:
+    build:
+      context: ./postgres
+    <<: *default_restart_policy
+    hostname: "postgres"
+    env_file:
+      - postgres/postgres.env
+    networks:
+      - frenet
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+      - ./backups:/backups
+
+volumes:
+  postgres-data:
+
+networks:
+  frenet:
