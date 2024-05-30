@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from typing import Annotated
+from typing import Annotated, List
 from ..data_management import PositionData
 from ..security.group_auth import GroupAuth
 from ..database.database import Database, DatabaseError
@@ -37,7 +37,28 @@ async def add_position(
     Add the position for detected weed.
     """
     try:
-        database.task3_add_position(group, positiondata.x, positiondata.y)
+        database.task3_add_positions(group, [positiondata])
+        await eventpublisher.send_task_event(group,
+                                             TASK_NAME,
+                                             EventType.add_data)
+    except DatabaseError as e:
+        database_error_to_http_exception(e)
+    return InfoMessage(msg=InfoMessageEnum.ok)
+
+
+@router.post(
+    "/add-final-positions",
+    status_code=201
+)
+async def add_final_positions(
+    positiondata: List[PositionData],
+    group: Annotated[bool, Depends(group_auth)]
+) -> InfoMessage:
+    """
+    Add the final positions for detected weed.
+    """
+    try:
+        database.task3_add_positions(group, positiondata, True)
         await eventpublisher.send_task_event(group,
                                              TASK_NAME,
                                              EventType.add_data)

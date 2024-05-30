@@ -39,3 +39,4 @@ volumes:
 
 networks:
   frenet:
+    name: frenet

@@ -1,4 +1,6 @@
 from pydantic import BaseModel, NonNegativeInt, PositiveInt, Field
+from typing import Optional
+from datetime import datetime
 
 
 class PlantRowData(BaseModel):
@@ -18,4 +20,8 @@ class PlantRowData(BaseModel):
     )
     plant_count: NonNegativeInt = Field(
         description="Number of counted plants for the given row."
+    )
+    timestamp: Optional[datetime] = Field(
+        default=None,
+        description="Admin only: Timestamp from database in UTC."
     )

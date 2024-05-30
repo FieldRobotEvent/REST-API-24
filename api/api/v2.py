@@ -9,20 +9,20 @@ all_tags_metadata = [
     *health.tags_metadata
 ]
 
-api_v1 = FastAPI(
+api_v2 = FastAPI(
     title="Field Robot Event 2024 - API",
-    version="1",
+    version="2",
     openapi_tags=all_tags_metadata
 )
 
-api_v1.include_router(task2.router, prefix="/task2")
-api_v1.include_router(task3.router, prefix="/task3")
-api_v1.include_router(task4.router, prefix="/task4")
-api_v1.include_router(health.router, prefix="/health")
+api_v2.include_router(task2.router, prefix="/task2")
+api_v2.include_router(task3.router, prefix="/task3")
+api_v2.include_router(task4.router, prefix="/task4")
+api_v2.include_router(health.router, prefix="/health")
 
 if not settings.disable_admin_endpoint:
     all_tags_metadata.append(*admin.tags_metadata)
-    api_v1.include_router(admin.router, prefix="/admin")
+    api_v2.include_router(admin.router, prefix="/admin")
 
 if not settings.disable_ws_endpoint:
-    api_v1.include_router(websockets.router, prefix="/ws")
+    api_v2.include_router(websockets.router, prefix="/ws")

@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+from typing import Optional
+from datetime import datetime
 
 
 class PositionData(BaseModel):
@@ -18,4 +20,8 @@ class PositionData(BaseModel):
     )
     y: float = Field(
         description="y coordinate. Unit is [metre]."
+    )
+    timestamp: Optional[datetime] = Field(
+        default=None,
+        description="Admin only: Timestamp from database in UTC."
     )

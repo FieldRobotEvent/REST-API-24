@@ -13,6 +13,9 @@
   <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"/></a>
 </p>
 
+> **&#9888; API changed to version 2!** <br>
+Look the [changelog](changelog.md) for information.
+
 ## Description
 REST-API code for task 2, 3 and 4 of the 2024 Field Robot Event.
 

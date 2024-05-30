@@ -1,7 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 from ..data_management import PositionData
 from typing import List
-from fastapi import status, HTTPException
 
 positions = None
 
@@ -17,7 +16,8 @@ tags_metadata = [
 
 
 @router.get(
-    "/get-positions"
+    "/get-positions",
+    response_model_exclude_unset=True
 )
 async def get_positions() -> List[PositionData]:
     """

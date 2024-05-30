@@ -34,6 +34,16 @@ curl -X 'POST' \
   -d '{"plant_count": 0, "row_number": 1}'
 ```
 
+### Task 2: Add final rows
+```bash
+curl -X 'POST' \
+  'http://localhost:8000/fre2024/task2/add-final-rows' \
+  -H 'x-api-key: i7apIK29KHa6YFuicZDlMBskco4cag0P' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '[{"plant_count": 0, "row_number": 1}]'
+```
+
 ### Task 2: Start
 ```bash
 curl -X 'POST' \
@@ -50,7 +60,7 @@ curl -X 'POST' \
   -H 'accept: application/json'
 ```
 
-### Task 3: add position
+### Task 3: Add position
 ```bash
 curl -X 'POST' \
   'http://localhost:8000/fre2024/task3/add-position' \
@@ -58,6 +68,16 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{"x": 0, "y": 0}'
+```
+
+### Task 3: Add final positions
+```bash
+curl -X 'POST' \
+  'http://localhost:8000/fre2024/task3/add-final-positions' \
+  -H 'x-api-key: i7apIK29KHa6YFuicZDlMBskco4cag0P' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '[{"x": 0, "y": 0}]'
 ```
 
 ### Task 3: Start

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from typing import Annotated
+from typing import Annotated, List
 from ..data_management import PlantRowData
 from ..security.group_auth import GroupAuth
 from ..database.database import Database, DatabaseError
@@ -42,7 +42,28 @@ async def add_row(
     Add the plant count for a given row.
     """
     try:
-        database.task2_add_row(group, rowdata.row_number, rowdata.plant_count)
+        database.task2_add_rows(group, [rowdata])
+        await eventpublisher.send_task_event(group,
+                                             TASK_NAME,
+                                             EventType.add_data)
+    except DatabaseError as e:
+        database_error_to_http_exception(e)
+    return InfoMessage(msg=InfoMessageEnum.ok)
+
+
+@router.post(
+    "/add-final-rows",
+    status_code=201
+)
+async def add_final_rows(
+    rowdata: List[PlantRowData],
+    group: Annotated[str, Depends(group_auth)]
+) -> InfoMessage:
+    """
+    Add the final plant count for a given rows.
+    """
+    try:
+        database.task2_add_rows(group, rowdata, True)
         await eventpublisher.send_task_event(group,
                                              TASK_NAME,
                                              EventType.add_data)

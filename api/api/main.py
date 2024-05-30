@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .settings import settings
 from .routers import task2, task3, task4, admin, websockets
-from .v1 import api_v1
+from .v2 import api_v2
 from .database.database_factory import DatabaseFactory
 from .tools.websocket_handler import WebsocketHandler
 
@@ -17,6 +17,8 @@ async def lifespan(_: FastAPI):
     admin.task2_rows_solution = settings.task2_rows_solution
     admin.task3_positions_solution = settings.task3_positions_solution
     admin.groups = settings.group_names
+
+    websockets.api_key_auth_ws.valid_key = settings.admin_api_key
 
     DatabaseFactory.initialise_databases(
         postgre_database=settings.postgres_db,
@@ -41,4 +43,4 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-app.mount("/fre2024", api_v1)
+app.mount("/fre2024", api_v2)
