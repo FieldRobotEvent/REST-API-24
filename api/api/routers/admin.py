@@ -65,6 +65,7 @@ def table_to_zip(file, table) -> SpooledTemporaryFile:
         for group in groups:
             t = table.loc[table['group_name'] == group]
             entry = t.to_csv(
+                index=False,
                 float_format="%.3f",
                 date_format='%Y-%m-%d %H:%M:%S')
             index = group.lower().replace(" ", "_") + '.csv'
@@ -131,7 +132,7 @@ async def task2_get_result(
     try:
         table = (
             database
-            .task3_get_results(tz)
+            .task2_get_results(tz)
             .query(f'final == {final}')
             .drop(['final'], axis=1)
             )

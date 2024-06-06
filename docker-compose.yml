@@ -20,6 +20,22 @@ services:
     networks:
       - frenet
 
+  webui:
+    build:
+      context: ./webui
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+    env_file:
+      - webui/webui.env
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:3000:3000
+    networks:
+      - frenet
+
   postgres:
     build:
       context: ./postgres

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FRE 2024 Task 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <img src="../images/FRE-logo-v03.png" height="192" width="auto" id="logoFRE">
+
+    <div id="fullscreenWrapper">
+        <div id="teamSelectContainer">
+            <select id="teamSelect">
+                <option value=""></option>
+            </select>
+            <label class="headerElement">Final Results:</label>
+            <label class="switch headerElement">
+                <input class="headerElement" type="checkbox" id="checkboxSelectFinal">
+                <span class="slider round headerElement"></span>
+              </label>
+            <a href="results?filetype=csv&final=false"><button class="headerElement">Results(csv)</button></a>
+            <a href="results?filetype=xlsx&final=false"><button class="headerElement">Results(xlsx)</button></a>
+            <a href="results?filetype=csv"><button class="headerElement">Final Results(csv)</button></a>
+            <a href="results?filetype=xlsx"><button class="headerElement">Final Results(xlsx)</button></a>
+        </div>
+
+        <div class="mainElementsContainer">
+            <div id="teamNameDisplayContainer">
+                <h1 id="selectedTeamNameDisplay">Select a Team ...</h1>
+            </div>
+
+            <div id="stopwatchContainer">
+                <h2 class="stopwatchContainerElement" id="stopwatchPrefix">Timer:</h2>
+                <div id="stopwatchDisplay">
+                    <span id="stopwatchDisplayMinutes">0:</span>
+                    <span id="stopwatchDisplaySeconds">00</span>
+                    <span id="stopwatchDisplayMilliseconds">.00</span>
+                </div>
+                <h2 id="timeIsUpMessage">Time is up!</h2>
+            </div>
+
+            <div id="chart-legend-container"></div>
+            <div class="chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div id="rowsCountContainer" class="rows-container"></div>
+
+    <script type="module" src="task2.js"></script>
+</body>
+</html>

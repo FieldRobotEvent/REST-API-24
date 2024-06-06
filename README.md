@@ -14,7 +14,7 @@
 </p>
 
 > **&#9888; API changed to version 2!** <br>
-Look the [changelog](changelog.md) for information.
+Look at the [changelog](changelog.md) for information.
 
 ## Description
 REST-API code for task 2, 3 and 4 of the 2024 Field Robot Event.
@@ -31,6 +31,15 @@ required by the teams.
 ## Usage
 To interact with a running instance of the API the OpenAPI description is provided [here](docs/static/openapi.json).\
 For description on how to interact with the API and examples using ```curl``` look [here](docs/api-example.md).
+
+**After starting the API stack the following general endpoints are available:**
+| Address             | Service                                    |
+|---------------------|--------------------------------------------|
+| API base address    | http://localhost:8000/fre2024/             |
+| Swagger UI          | http://localhost:8000/fre2024/docs         |
+| OpenAPI Description | http://localhost:8000/fre2024/openapi.json |
+| WebUI Task 2        | http://localhost:3000/task2                |
+| WebUI Task 3        | http://localhost:3000/task3                |
 
 ## Requirements
 - Docker with compose plugin
@@ -235,4 +244,5 @@ docker compose --env-file=<env_file> logs <service_name>
 Currently available service names are:
 - ```api```
 - ```postgres```
+- ```webui```
 </details>
